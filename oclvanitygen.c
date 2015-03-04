@@ -59,6 +59,7 @@ usage(const char *name)
 "-1            Stop after first match\n"
 "-N            Generate namecoin address\n"
 "-T            Generate bitcoin testnet address\n"
+"-C            Generate CLAM address\n"
 "-X <version>  Generate address with the given version\n"
 "-e            Encrypt private keys, prompt for password\n"
 "-E <password> Encrypt private keys with <password> (UNSAFE)\n"
@@ -123,7 +124,7 @@ main(int argc, char **argv)
 	int i;
 
 	while ((opt = getopt(argc, argv,
-			     "vqik1NTX:eE:p:P:d:w:t:g:b:VSh?f:o:s:D:")) != -1) {
+			     "vqik1NTCX:eE:p:P:d:w:t:g:b:VSh?f:o:s:D:")) != -1) {
 		switch (opt) {
 		case 'v':
 			verbose = 2;
@@ -144,6 +145,10 @@ main(int argc, char **argv)
 			addrtype = 52;
 			privtype = 180;
 			break;
+        case 'C':
+            addrtype = 137;
+            privtype = 133;
+            break;
 		case 'T':
 			addrtype = 111;
 			privtype = 239;
