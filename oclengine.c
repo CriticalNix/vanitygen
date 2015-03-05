@@ -436,8 +436,6 @@ vg_ocl_get_quirks(vg_ocl_context_t *vocp)
 		 * seems to crash based on whether the gods were smiling
 		 * when Catalyst was last installed/upgraded.
 		 */
-		if (!strcmp(dvn, "Tahiti") || !strcmp(dvn, "Barts") || !strcmp(dvn, "Pitcairn"))
-			quirks &= ~VG_OCL_AMD_BFI_INT;
 		if (vg_ocl_device_gettype(vocp->voc_ocldid) &
 		    CL_DEVICE_TYPE_GPU) {
 			quirks |= VG_OCL_EXPENSIVE_BRANCHES;
@@ -458,7 +456,7 @@ vg_ocl_get_quirks(vg_ocl_context_t *vocp)
 	default:
 		break;
 	}
-	return (quirks);
+	return (quirks & ~VG_OCL_AMD_BFI_INT);
 }
 
 static int
